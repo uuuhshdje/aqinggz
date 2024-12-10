@@ -1,0 +1,1501 @@
+mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7893
+authentication: [""]
+allow-lan: true
+mode: Rule
+log-level: info
+ipv6: true
+# Meta 内核特性 https://wiki.metacubex.one/config/general
+# 统一延迟
+# 更换延迟计算方式,去除握手等额外延迟
+unified-delay: true
+# TCP 并发
+# 同时对所有ip进行连接，返回延迟最低的地址
+tcp-concurrent: true
+external-controller: :9999
+external-ui: ui
+secret:
+tun: { enable: false }
+experimental: { ignore-resolve-fail: true, interface-name: en0 }
+sniffer:
+  {
+    enable: true,
+    parse-pure-ip: true,
+    skip-domain: [Mijia Cloud],
+    sniff: { tls: { ports: [443, 8443] }, http: { ports: [80, 8080-8880] } },
+  }
+find-process-mode: "off"
+routing-mark: 7894
+dns:
+  enable: true
+  listen: :1053
+  use-hosts: true
+  ipv6: true
+  default-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+    - "time.*.apple.com"
+    - "time-ios.apple.com"
+    - "time1.*.com"
+    - "time2.*.com"
+    - "time3.*.com"
+    - "time4.*.com"
+    - "time5.*.com"
+    - "time6.*.com"
+    - "time7.*.com"
+    - "ntp.*.com"
+    - "ntp1.*.com"
+    - "ntp2.*.com"
+    - "ntp3.*.com"
+    - "ntp4.*.com"
+    - "ntp5.*.com"
+    - "ntp6.*.com"
+    - "ntp7.*.com"
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - "+.pool.ntp.org"
+    - "time1.cloud.tencent.com"
+    - "music.163.com"
+    - "*.music.163.com"
+    - "*.126.net"
+    - "musicapi.taihe.com"
+    - "music.taihe.com"
+    - "songsearch.kugou.com"
+    - "trackercdn.kugou.com"
+    - "*.kuwo.cn"
+    - "api-jooxtt.sanook.com"
+    - "api.joox.com"
+    - "joox.com"
+    - "y.qq.com"
+    - "*.y.qq.com"
+    - "streamoc.music.tc.qq.com"
+    - "mobileoc.music.tc.qq.com"
+    - "isure.stream.qqmusic.qq.com"
+    - "dl.stream.qqmusic.qq.com"
+    - "aqqmusic.tc.qq.com"
+    - "amobile.music.tc.qq.com"
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - "music.migu.cn"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+    - "+.qq.com"
+    - "+.tencent.com"
+    - "+.steamcontent.com"
+    - "+.srv.nintendo.net"
+    - "*.n.n.srv.nintendo.net"
+    - "+.cdn.nintendo.net"
+    - "+.stun.playstation.net"
+    - "xbox.*.*.microsoft.com"
+    - "*.*.xboxlive.com"
+    - "xbox.*.microsoft.com"
+    - "xnotify.xboxlive.com"
+    - "+.battlenet.com.cn"
+    - "+.wotgame.cn"
+    - "+.wggames.cn"
+    - "+.wowsgame.cn"
+    - "+.wargaming.net"
+    - "proxy.golang.org"
+    - "stun.*.*"
+    - "stun.*.*.*"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - "+.stun.*.*.*.*"
+    - "+.stun.*.*.*.*.*"
+    - "heartbeat.belkin.com"
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - "mesu.apple.com"
+    - "swscan.apple.com"
+    - "swquery.apple.com"
+    - "swdownload.apple.com"
+    - "swcdn.apple.com"
+    - "swdist.apple.com"
+    - "lens.l.google.com"
+    - "stun.l.google.com"
+    - "na.b.g-tun.com"
+    - "+.nflxvideo.net"
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.ff14.sdo.com"
+    - "ff.dorado.sdo.com"
+    - "*.mcdn.bilivideo.cn"
+    - "+.media.dssott.com"
+    - "shark007.net"
+    - "+.cmbchina.com"
+    - "+.cmbimg.com"
+    - "adguardteam.github.io"
+    - "adrules.top"
+    - "anti-ad.net"
+    - "local.adguard.org"
+    - "static.adtidy.org"
+    - "+.sandai.net"
+    - "+.n0808.com"
+    - "+.3gppnetwork.org"
+    - "+.uu.163.com"
+    - "ps.res.netease.com"
+    - "+.edu.cn"
+  nameserver: [223.5.5.5, 114.114.114.114]
+  fallback: [1.1.1.1]
+  fallback-filter:
+    geoip: true
+    domain:
+      - "+.bing.com"
+      - "+.linkedin.com"
+hosts:
+  "time.android.com": 203.107.6.88
+  "time.facebook.com": 203.107.6.88
+  "localhost": 127.0.0.1
+proxy-groups:
+  - {
+      name: 🐟 漏网之鱼,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+          🎯 本机直连,
+        ],
+    }
+  - {
+      name: ⏱️Speedtest测速,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+
+          🚀 手动切换,
+          🎯 本机直连,
+        ],
+    }
+  - {
+      name: 🤖 人工智障,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲 电报消息,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲墨少离miaoko.io,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥国外媒体（未细分）,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥Youtube,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥Netflix,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥Disney,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥TikTok,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥Niconico,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥HBOHK,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥HBOUSA,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥 EMBY,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥TVB,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥BBC,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎥18+,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲Whatsapp,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲Talktone,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲Discord,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲X/Twttier,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📲Ins,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎮 国内游戏,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🎮 国外游戏,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🚀 游戏选择,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: Ⓜ️ 微软服务,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 📢 谷歌服务,
+      type: select,
+      proxies:
+        [
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: 🍎 苹果服务,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: Docker,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - {
+      name: Github,
+      type: select,
+      proxies:
+        [
+          🎯 本机直连,
+          🇭🇰 香港节点,
+          🇭🇰-test 香港测速,
+          🇹🇼 台湾节点,
+          🇹🇼-test 台湾测速,
+          🇯🇵 日本节点,
+          🇯🇵-test 日本测速,
+          🇸🇬 新加坡节点,
+          🇸🇬-test 新加坡测速,
+          🇺🇸 美国节点,
+          🇺🇸-test 美国测速,
+          UK 英国节点,
+          UK-test 英国测速,
+          KR 韩国节点,
+          KR-test 韩国测速,
+          SE 瑞典节点,
+          SE-test 瑞典测速,
+          🚀 手动切换,
+        ],
+    }
+  - { name: 🎯 本机直连, type: select, proxies: [DIRECT] }
+  - { name: 🚀 手动切换, type: select, proxies: [🎯 本机直连], use: [Allinone] }
+  - { name: 🚀 游戏选择, type: select, proxies: [🎯 本机直连], use: [Allinone] }
+  - {
+      name: 🇭🇰 香港节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)港|hk|hongkong|hong kong",
+    }
+  - {
+      name: 🇭🇰-test 香港测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)港|hk|hongkong|hong kong",
+    }
+  - {
+      name: 🇹🇼 台湾节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)台|tw|taiwan",
+    }
+  - {
+      name: 🇹🇼-test 台湾测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)台|tw|taiwan",
+    }
+  - {
+      name: 🇯🇵 日本节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)日本|jp|japan",
+    }
+  - {
+      name: 🇯🇵-test 日本测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)日本|jp|japan",
+    }
+  - {
+      name: 🇸🇬 新加坡节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)新|sg|singapore|Hysteria",
+    }
+  - {
+      name: 🇸🇬-test 新加坡测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)新|sg|singapore|Hysteria",
+    }
+  - {
+      name: 🇺🇸 美国节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)美|us|unitedstates|united states",
+    }
+  - {
+      name: 🇺🇸-test 美国测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)美|us|unitedstates|united states",
+    }
+  - {
+      name: UK 英国节点,
+      type: select,
+      use: [Allinone],
+
+      filter: "(?i)英国|英|UK",
+    }
+  - {
+      name: UK-test 英国测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)英国|英|UK",
+    }
+  - { name: KR 韩国节点, type: select, use: [Allinone], filter: "(?i)KR" }
+  - { name: KR-test 韩国测速, type: select, use: [Allinone], filter: "(?i)KR" }
+  - { name: SE 瑞典节点, type: select, use: [Allinone], filter: "(?i)SE" }
+  - {
+      name: SE-test 瑞典测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)SE",
+    }
+  - {
+      name: TR-test 土耳其测速,
+      type: url-test,
+      url: http://www.gstatic.com/generate_204,
+      interval: "300",
+      tolerance: 90,
+      lazy: true,
+      use: [Allinone],
+
+      filter: "(?i)TR",
+    }
+  - { name: TR 土耳其节点, type: select, use: [Allinone], filter: "(?i)TR" }
+  - { name: Allinone, type: select, use: [Allinone] }
+proxy-providers:
+  Allinone:
+    type: http
+    url: ""
+    path: "./providers/allinone.yaml"
+    interval: 43200
+    health-check:
+      enable: true
+      lazy: true
+      url: "http://www.apple.com/library/test/success.html"
+      interval: 600
+    override:
+      udp: true
+      skip-cert-verify: true
+
+rules:
+  - RULE-SET,private,🎯 本机直连
+  - RULE-SET,openai,🤖 人工智障
+  - RULE-SET,bing,🤖 人工智障
+  - RULE-SET,gemini,🤖 人工智障
+  - RULE-SET,claude,🤖 人工智障
+  - DOMAIN-SUFFIX,auth.opanai.com,🤖 人工智障
+  - RULE-SET,microsoft-cn,Ⓜ️ 微软服务
+  - RULE-SET,apple-cn,🍎 苹果服务
+  - RULE-SET,google,📢 谷歌服务
+  - RULE-SET,Speedtest7,⏱️Speedtest测速
+  - RULE-SET,Tencent,🎮 国内游戏
+  - DOMAIN-SUFFIX,+.qq.com,🎮 国内游戏
+  - RULE-SET,steamCN,🎮 国内游戏
+  - RULE-SET,TencentGame@cn,🎮 国内游戏
+  - DOMAIN-KEYWORD,hyrz,🎮 国内游戏
+  - RULE-SET,BilibiliGame,🎮 国内游戏
+  - RULE-SET,steam,🎮 国外游戏
+  - RULE-SET,Aodesai,🎮 国外游戏
+  - RULE-SET,Game,🎮 国外游戏
+  - RULE-SET,YouTube,🎥Youtube
+  - RULE-SET,Disney,🎥国外媒体（未细分）
+  - RULE-SET,X,📲X/Twttier
+  - RULE-SET,Instagram,📲Ins
+  - RULE-SET,YouTubemusic,🎥Youtube
+  - RULE-SET,Netflix,🎥Netflix
+  - RULE-SET,Discord,📲Discord
+  - RULE-SET,TikTok,🎥TikTok
+  - RULE-SET,Niconico,🎥Niconico
+  - RULE-SET,BBC,🎥BBC
+  - RULE-SET,Bahamut,🎥国外媒体（未细分）
+  - RULE-SET,Hulu,🎥国外媒体（未细分）
+  - RULE-SET,PandoraTV,🎥国外媒体（未细分）
+  - RULE-SET,TVB,🎥TVB
+  - RULE-SET,HBOHK,🎥HBOHK
+  - RULE-SET,HBOUSA,🎥HBOUSA
+  - RULE-SET,FOXNOW,🎥国外媒体（未细分）
+  - RULE-SET,FOXPlus,🎥国外媒体（未细分）
+  - RULE-SET,KKTV,🎥国外媒体（未细分）
+  - RULE-SET,NaverTV,🎥国外媒体（未细分）
+  - RULE-SET,NowE,🎥国外媒体（未细分）
+  - RULE-SET,ParamountPlus,🎥国外媒体（未细分）
+  - RULE-SET,PrimeVideo,🎥国外媒体（未细分）
+  - RULE-SET,TVer,🎥国外媒体（未细分）
+  - RULE-SET,myTVSUPER,🎥国外媒体（未细分）
+  - RULE-SET,HBOAsia,🎥国外媒体（未细分）
+  - RULE-SET,DiscoveryPlus,🎥国外媒体（未细分）
+  - RULE-SET,Overcast,🎥国外媒体（未细分）
+  - RULE-SET,Peacock,🎥国外媒体（未细分）
+  - RULE-SET,BritboxUK,🎥国外媒体（未细分）
+  - RULE-SET,HKOpenTV,🎥国外媒体（未细分）
+  - RULE-SET,Acplay,🎥国外媒体（未细分）
+  - DOMAIN-KEYWORD,porn,🎥18+
+  - DOMAIN-KEYWORD,xvideos,🎥18+
+  - DOMAIN-KEYWORD,kinky,🎥18+
+  - DOMAIN-KEYWORD,sex,🎥18+
+  - DOMAIN-KEYWORD,hentai,🎥18+
+  - DOMAIN-KEYWORD,comic,🎥18+
+  - RULE-SET,telegramip,📲 电报消息
+  - RULE-SET,ChinaMAX,🎯 本机直连
+  - RULE-SET,ChinaMAX_Domain,🎯 本机直连
+  - RULE-SET,ChinaMAX_IP,🎯 本机直连
+  - RULE-SET,privateip,🎯 本机直连,no-resolve
+  - RULE-SET,Tailscale,🎯 本机直连
+  - RULE-SET,docker,Docker
+  - RULE-SET,github,Github
+  - DOMAIN-SUFFIX,1steam.one,🎥 EMBY
+  - RULE-SET,Talktonedirect,🎯 本机直连
+  - DOMAIN-SUFFIX,mobilefuse.com,📲Talktone
+  - DOMAIN-SUFFIX,inmobi.com,📲Talktone
+  - DOMAIN-SUFFIX,crashlytics.com,📲Talktone
+  - DOMAIN-SUFFIX,talkatone.com,📲Talktone
+  - DOMAIN-SUFFIX,kochava.com,📲Talktone
+  - DOMAIN-SUFFIX,tktn.be,📲Talktone
+  - DOMAIN-SUFFIX,cohere.com,📲Talktone
+  - DOMAIN-SUFFIX,ip-api.com,📲Talktone
+  - DOMAIN-SUFFIX,agkn.com,📲Talktone
+  - DOMAIN-SUFFIX,tktn.at,📲Talktone
+  - IP-CIDR,50.117.27.0/24,📲Talktone
+  - IP-CIDR,69.46.75.0/24,📲Talktone
+  - IP-CIDR,205.164.56.0/24,📲Talktone
+  - IP-CIDR,63.251.124.0/24,📲Talktone
+  - RULE-SET,Whatsapp,📲Whatsapp
+  - DOMAIN-SUFFIX,miaoko.io,📲墨少离miaoko.io
+  - DOMAIN-KEYWORD,game,🎮 国外游戏
+  - DOMAIN-KEYWORD,apex,🎮 国外游戏
+  - DOMAIN-KEYWORD,epic,🎮 国外游戏
+  - DOMAIN-KEYWORD,ytools,🎯 本机直连
+  - DOMAIN-KEYWORD,allwntech,🎯 本机直连
+  - DOMAIN-KEYWORD,radmin,🎯 本机直连
+  - DOMAIN-KEYWORD,vpn,🎯 本机直连
+  - DOMAIN-KEYWORD,emby,🎯 本机直连
+  - MATCH,🐟 漏网之鱼
+rule-providers:
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@clash/private.yaml"
+    path: ./providers/private.yaml
+    interval: 86400
+  openai:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+    path: ./providers/openai.yaml
+    interval: 86400
+  claude:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
+    path: ./providers/claude.yaml
+    interval: 86400
+  microsoft-cn:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+    path: ./providers/microsoft-cn.yaml
+    interval: 86400
+  apple-cn:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml"
+    path: ./providers/apple-cn.yaml
+    interval: 86400
+  google:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    path: ./providers/google.yaml
+    interval: 86400
+  telegramip:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+    path: ./providers/telegramip.yaml
+    interval: 86400
+  privateip:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/DustinWin/ruleset_geodata@clash/privateip.yaml"
+    path: ./providers/privateip.yaml
+    interval: 86400
+  Netflix:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix.yaml"
+    path: ./providers/Netflix.yaml
+    interval: 86400
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+    path: ./providers/youtube.yaml
+    interval: 86400
+  YouTubemusic:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
+    path: ./providers/youtubemusic.yaml
+    interval: 86400
+  Discord:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Discord/Discord.yaml"
+    path: ./providers/Discord.yaml
+    interval: 86400
+  Disney:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Disney/Disney.yaml"
+    path: ./providers/Disney.yaml
+    interval: 86400
+  TikTok:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
+    path: ./providers/TikTok.yaml
+    interval: 86400
+  bing:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml"
+    path: ./providers/bing.yaml
+    interval: 86400
+  steamCN:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/SteamCN/SteamCN.yaml"
+    path: ./providers/steamcn.yaml
+    interval: 86400
+  steam:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml"
+    path: ./providers/steam.yaml
+    interval: 86400
+  gemini:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Gemini/Gemini.yaml"
+    path: ./providers/gemini.yaml
+    interval: 86400
+  Instagram:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Instagram/Instagram.yaml"
+    path: ./providers/Ins.yaml
+    interval: 86400
+  X:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml"
+    path: ./providers/X.yaml
+    interval: 86400
+  Niconico:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Niconico/Niconico.yaml"
+    path: ./ruleset/Niconico.yaml
+    interval: 86400
+  BBC:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BBC/BBC.yaml"
+    path: ./ruleset/BBC.yaml
+    interval: 86400
+  Bahamut:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bahamut/Bahamut.yaml"
+    path: ./ruleset/Bahamut.yaml
+    interval: 86400
+  Hulu:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Hulu/Hulu.yaml"
+    path: ./ruleset/Hulu.yaml
+    interval: 86400
+  PandoraTV:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PandoraTV/PandoraTV.yaml"
+    path: ./ruleset/PandoraTV.yaml
+    interval: 86400
+  TVB:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TVB/TVB.yaml"
+    path: ./ruleset/TVB.yaml
+    interval: 86400
+  HBOHK:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HBOHK/HBOHK.yaml"
+    path: ./ruleset/HBOHK.yaml
+    interval: 86400
+  HBOUSA:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HBOUSA/HBOUSA.yaml"
+    path: ./ruleset/HBOUSA.yaml
+    interval: 86400
+  FOXNOW:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/FOXNOW/FOXNOW.yaml"
+    path: ./ruleset/FOXNOW.yaml
+    interval: 86400
+  FOXPlus:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/FOXPlus/FOXPlus.yaml"
+    path: ./ruleset/FOXPlus.yaml
+    interval: 86400
+  KKTV:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/KKTV/KKTV.yaml"
+    path: ./ruleset/KKTV.yaml
+    interval: 86400
+  NaverTV:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/NaverTV/NaverTV.yaml"
+    path: ./ruleset/NaverTV.yaml
+    interval: 86400
+  NowE:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/NowE/NowE.yaml"
+    path: ./ruleset/NowE.yaml
+    interval: 86400
+  ParamountPlus:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ParamountPlus/ParamountPlus.yaml"
+    path: ./ruleset/ParamountPlus.yaml
+    interval: 86400
+  PrimeVideo:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PrimeVideo/PrimeVideo.yaml"
+    path: ./ruleset/PrimeVideo.yaml
+    interval: 86400
+  TVer:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TVer/TVer.yaml"
+    path: ./ruleset/TVer.yaml
+    interval: 86400
+  myTVSUPER:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/myTVSUPER/myTVSUPER.yaml"
+    path: ./ruleset/myTVSUPER.yaml
+    interval: 86400
+  HBOAsia:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HBOAsia/HBOAsia.yaml"
+    path: ./ruleset/HBOAsia.yaml
+    interval: 86400
+  DiscoveryPlus:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/DiscoveryPlus/DiscoveryPlus.yaml"
+    path: ./ruleset/DiscoveryPlus.yaml
+    interval: 86400
+  Overcast:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Overcast/Overcast.yaml"
+    path: ./ruleset/Overcast.yaml
+    interval: 86400
+  Peacock:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Peacock/Peacock.yaml"
+    path: ./ruleset/Peacock.yaml
+    interval: 86400
+  BritboxUK:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BritboxUK/BritboxUK.yaml"
+    path: ./ruleset/BritboxUK.yaml
+    interval: 86400
+  HKOpenTV:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/HKOpenTV/HKOpenTV.yaml"
+    path: ./ruleset/HKOpenTV.yaml
+    interval: 86400
+  Acplay:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Acplay/Acplay.yaml"
+    path: ./ruleset/Acplay.yaml
+    interval: 86400
+  Xiaomi:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/XiaoMi/XiaoMi.yaml"
+    path: ./ruleset/Xiaomi.yaml
+    interval: 86400
+  Tencentvideo:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TencentVideo/TencentVideo.yaml"
+    path: ./ruleset/tencentvideo.yaml
+    interval: 86400
+  Speedtest7:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Speedtest/Speedtest.yaml"
+    path: ./ruleset/Speedtest7.yaml
+    interval: 86400
+  Tencent:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Tencent/Tencent.yaml"
+    path: ./ruleset/Tencent.yaml
+    interval: 86400
+  ChinaMAX:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax.yaml"
+    path: ./ruleset/ChinaMax.yaml
+    interval: 86400
+  ChinaMAX_Domain:
+    type: http
+    behavior: domain
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml"
+    path: ./ruleset/ChinaMax_Domain.yaml
+    interval: 86400
+  ChinaMAX_IP:
+    type: http
+    behavior: ipcidr
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_IP.yaml"
+    path: ./ruleset/ChinaMax_IP.yaml
+    interval: 86400
+  docker:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Docker/Docker.yaml"
+    path: ./ruleset/Docker.yaml
+    interval: 86400
+  github:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+    path: ./ruleset/github.yaml
+    interval: 86400
+  Aodesai:
+    type: http
+    behavior: classical
+    url: "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Assassin'sCreed-Odyssey/Assassin'sCreed-Odyssey.yaml"
+    path: ./ruleset/aodesai.yaml
+    interval: 86400
+  EA:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/EA/EA.yaml"
+    path: ./ruleset/EA.yaml
+    interval: 86400
+  Ubisoft:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Ubisoft/Ubisoft.yaml"
+    path: ./ruleset/Ubisoft.yaml
+    interval: 86400
+  Epic:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Epic/Epic.yaml"
+    path: ./ruleset/EPIC.yaml
+    interval: 86400
+  Whatsapp:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    path: ./ruleset/whatsapp.yaml
+    interval: 86400
+  Game:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Game/Game.yaml"
+    path: ./ruleset/game.yaml
+    interval: 86400
+  BilibiliGame:
+    type: http
+    behavior: classical
+    url: "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/8ccfafe264fdd0a16021c9aa342a0cc8f30f28d8/geo/geosite/bilibili-game.yaml"
+    path: ./ruleset/bilibiligame.yaml
+    interval: 86400
+  TencentGame@cn:
+    type: http
+    behavior: classical
+    url: "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/8ccfafe264fdd0a16021c9aa342a0cc8f30f28d8/geo/geosite/tencent-games%40cn.yaml"
+    path: ./ruleset/tencentgamecn.yaml
+    interval: 86400
+  Talktonedirect:
+    type: http
+    behavior: classical
+    url: "https://ghp.ci/https://raw.githubusercontent.com/mottzz87/crules/main/rule/talkatone.list"
+    path: ./ruleset/Talktonedirect.yaml
+    interval: 86400
+  Tailscale:
+    type: http
+    behavior: classical
+    url: "https://ghp.ci/https://github.com/MetaCubeX/meta-rules-dat/blob/ec3c0807649c407e134554f1fa759c5c594b24ff/geo/geosite/tailscale.mrs"
+    path: ./ruleset/Tailscale.yaml
+    interval: 86400
